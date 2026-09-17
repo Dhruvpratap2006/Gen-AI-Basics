@@ -97,7 +97,7 @@ print(response.choices[0].message.content)
 ```
 </details>
 <details>
-<summary><b>Gemini</b></summary>
+<summary><b>Gemini</b></summary> 
 ```python
 import google.generativeai as genai
 import os
