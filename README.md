@@ -303,15 +303,59 @@ A normal LLM flow is `User → Prompt → Response`. But if a task needs web sea
  
 ---
  
-## 📝 Quick Revision Checklist
- 
-- [ ] Can explain LLM in 3 words (Large, Language, Model)
-- [ ] Can explain Model vs LLM difference
-- [ ] Can name 4+ popular LLMs and their providers
-- [ ] Understand why raw provider SDKs don't scale
-- [ ] Can explain all 6 LangChain components in one line each
-- [ ] Know all 4 types of prompts with an example each
-- [ ] Understand Chains vs Agents (fixed steps vs dynamic decisions)
-- [ ] Understand Memory (context retention) with an example
-- [ ] Understand Indexes/Retrieval and how it connects to RAG
- 
+---
+
+## 🆚 Chat Models vs Embedding Models
+
+### Chat Models
+
+A **Chat Model** takes text as input and **generates new text** as a response — it's built for conversation, answering questions, writing content, and reasoning.
+
+**Use cases:**
+- Answering questions
+- Writing code
+- Summarizing content
+- General conversation / chatbots
+
+**Examples:** GPT-4.1, Gemini, Claude, Mistral, Llama (via Groq)
+
+---
+
+### Embedding Models
+
+An **Embedding Model** takes text as input and **converts it into a list of numbers (a vector)** — it does not generate any new text. It captures the *meaning* of text in numeric form so that meaning can be mathematically compared.
+
+**Use cases:**
+- Semantic search (finding similar text)
+- RAG systems (retrieving relevant document chunks)
+- Clustering / grouping similar content
+- Recommendation systems
+
+**Examples:** `text-embedding-3-small` (OpenAI), `all-MiniLM-L6-v2` (HuggingFace), `embedding-001` (Google)
+
+---
+
+### 📊 Diagram
+
+```mermaid
+flowchart LR
+    Input["Input text:\n'What is the capital of France?'"] --> Chat[Chat Model]
+    Input --> Embed[Embedding Model]
+    Chat --> ChatOut["Output: Text\n'The capital of France is Paris.'"]
+    Embed --> EmbedOut["Output: Vector\n[0.023, -0.451, 0.892, ...]"]
+```
+
+---
+
+### 🔑 Key Difference
+
+| | Chat Model | Embedding Model |
+|---|---|---|
+| **Output** | Text (sentence/paragraph) | Numbers (vector) |
+| **Purpose** | Generate a response / conversation | Measure/compare meaning of text |
+| **Example task** | "Explain photosynthesis" | "How similar are these two sentences?" |
+| **Role in RAG** | Generates the final answer | Finds relevant chunks (retrieval step) |
+
+> 💡 **Analogy:** A Chat Model is like a **writer** — it understands input and writes a fresh response. An Embedding Model is like a **librarian** — it doesn't write anything, it just assigns a numeric "code" to each piece of text so similar ones can be found quickly.
+
+---
